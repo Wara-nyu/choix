@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Liste des candidats</title>
+	<link rel="stylesheet" th:href="@{/css/choixIndex.css}" media="screen" type="text/css">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<!-- 	<script type ="text/javascript" th:src="@{/js/indexJS.js}"></script> -->
+</head>
+
+<body>
+	<h1>entrez la liste des personnes</h1>
+	<p>mettez un "-" dans les prénoms composés, merci!</p>
+
+	<form method="POST" th:object="${choix}" th:action="@{/index}">
+		<!-- 	<form> -->
+		<!-- 		<textarea id="candidats"></textarea> -->
+		<textarea th:field="*{candidats}" name="candidats"></textarea>
+		<button type="submit" id="appelChoix">choisir</button>
+	</form>
+
+
+	<!-- 	<div id="result" th:field="*{result}"></div> -->
+</body>
+</html>
