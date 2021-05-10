@@ -9,16 +9,14 @@
 </head>
 
 <body>
-	<h1>entrez la liste des personnes</h1>
-	<p>mettez un "-" dans les prénoms composés, merci!</p>
+	<h1>Entrez la liste des personnes</h1>
+	<p>Mettez un "-" dans les prénoms composés. Merci!</p>
 
 	<form method="POST" th:object="${choix}" th:action="@{/index}">
-		<!-- 	<form> -->
-		<!-- 		<textarea id="candidats"></textarea> -->
-		<textarea th:field="*{candidats}" name="candidats"></textarea>
+		<textarea id="prenoms" th:field="*{prenoms}"></textarea>
 		<button type="submit" id="appelChoix">choisir</button>
 	</form>
-
+	<label>Version du build : </label><label th:text=${@environment.getProperty("build.version")} />
 
 	<!-- 	<div id="result" th:field="*{result}"></div> -->
 </body>

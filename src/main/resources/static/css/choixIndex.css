@@ -10,8 +10,14 @@ body {
 textarea {
 	height : 30vh;
 	width : 20vw;
+	margin : 10px
 }
 
 form {
-	padding : 10px;
+	display : flex;
+	flex-direction : column;
+}
+
+button {
+	margin : 10px
 }

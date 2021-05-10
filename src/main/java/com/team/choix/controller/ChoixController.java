@@ -1,6 +1,8 @@
 package com.team.choix.controller;
 
 import com.team.choix.model.*;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,10 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ChoixController {
+	
+	@Value("${prenoms.parDefaut}")
+	private String prenoms;
 
     @GetMapping(value = { "/", "/index" })
     public String index(Model model) {
-    	model.addAttribute("choix", new Choix());
+    	model.addAttribute("choix", new Choix(prenoms));
     	return "index";
     }
     @PostMapping(value={"/", "/index"})

@@ -6,11 +6,11 @@ import java.util.List;
 
 public class StringToList {
 	
-	public static List<String> stringToList(String input){
-		if(input.equals("")) {
+	public static List<String> stringToList(String entreePrenoms){
+		if(entreePrenoms.equals("")) {
 			return null;
 		}
-		List<String> candidats = new ArrayList<String>(Arrays.asList(input.split(" ")));
+		List<String> candidats = new ArrayList<String>(Arrays.asList(entreePrenoms.split("\n")));
 		return candidats;
 	}
 }

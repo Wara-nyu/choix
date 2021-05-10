@@ -18,6 +18,6 @@ public class StringToListTest {
 	@Test
 	public void testDeuxNom() throws Exception {
 		List<String> candidats = new ArrayList<String>(Arrays.asList("Noël", "Sylvestre"));
-		assertEquals(candidats, StringToList.stringToList("Noël Sylvestre"));
+		assertEquals(candidats, StringToList.stringToList("Noël\nSylvestre"));
 	}
 }
