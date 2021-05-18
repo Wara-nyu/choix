@@ -20,8 +20,11 @@ public class ChoixController {
     	model.addAttribute("choix", new Choix(prenoms));
     	return "index";
     }
+    
     @PostMapping(value={"/", "/index"})
-    public String choixSubmit(@ModelAttribute Choix choix, Model model) {
+    public String choixSubmit(Model model,
+    		@ModelAttribute Choix choix) {
+    	
 	  model.addAttribute("choix", choix);
 	  return "resultChoix";
 	}

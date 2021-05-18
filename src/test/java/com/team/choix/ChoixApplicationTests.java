@@ -17,26 +17,27 @@ class ChoixApplicationTests {
 
 	@Test
 	public void test() {
-		List<String> candidats = new ArrayList<>(Arrays.asList("Abdelazziz", "Arthur", "Christelle", "Elisabeth", "Frederic", "Jonathan", "Laurent","Mathieu", "Thomas", "Wara"));
+//		List<String> candidats = new ArrayList<>(Arrays.asList("Abdelazziz", "Arthur", "Christelle", "Elisabeth", "Frederic", "Jonathan", "Laurent","Mathieu", "Thomas", "Wara"));
+		String prenoms = "Arthur\nChristelle\nElisabeth\nFrederic\nThomas\nWara";
 		ChoixService choisi = new ChoixService();
 		
-		String nom = choisi.hasard(candidats);
+		String nom = choisi.hasard(prenoms);
 
-		assertTrue(candidats.contains(nom));
+		assertTrue(prenoms.contains(nom));
 
 	}
 	
 	@Test
 	public void testSuppleant() throws Exception {
 			
-			List<String> candidats = new ArrayList<>(Arrays.asList("Arthur", "Christelle", "Elisabeth", "Frederic", "Thomas", "Wara"));
-			ChoixService choisi = new ChoixService();
-			String nom = choisi.hasard(candidats);
+		String prenoms = "Arthur\nChristelle\nElisabeth\nFrederic\nThomas\nWara";
+		ChoixService choisi = new ChoixService();
+		String nom = choisi.hasard(prenoms);
 			
-			String suppleant = choisi.suppleant(candidats, nom);
+		String suppleant = choisi.suppleant(prenoms, nom);
 			
-			assertTrue(candidats.contains(suppleant));
-			assertNotEquals(nom, suppleant);
+		assertTrue(prenoms.contains(suppleant));
+		assertNotEquals(nom, suppleant);
 		}
 		
 }
