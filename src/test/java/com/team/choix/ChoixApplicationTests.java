@@ -15,10 +15,9 @@ import com.team.choix.service.ChoixService;
 @SpringBootTest
 class ChoixApplicationTests {
 
-//	@Test
+	@Test
 	public void test() {
-//		String prenoms = "Arthur\nChristelle\nElisabeth\nFrederic\nThomas\nWara";
-		List<String> prenoms = Arrays.asList("Arthur", "Christelle", "Elisabeth");
+		List<String> prenoms = Arrays.asList("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara");
 		ChoixService choisi = new ChoixService();
 		String nom = choisi.selectHasard(prenoms);
 
@@ -26,18 +25,16 @@ class ChoixApplicationTests {
 
 	}
 	
-//	@Test
+	@Test
 	public void testSuppleant() throws Exception {
-		List<String> prenoms = Arrays.asList("Arthur", "Christelle", "Elisabeth");
-
-//		String prenoms = "Arthur\nChristelle\nElisabeth\nFrederic\nThomas\nWara";
+		List<String> prenoms = new ArrayList<>(Arrays.asList("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara"));
 		ChoixService choisi = new ChoixService();
 		String nom = choisi.selectHasard(prenoms);
 			
-//		String suppleant = choisi.suppleant(prenoms, nom);
+		String suppleant = choisi.suppleant(prenoms, nom);
 			
-//		assertTrue(prenoms.contains(suppleant));
-//		assertNotEquals(nom, suppleant);
+		assertTrue(prenoms.contains(suppleant));
+		assertNotEquals(nom, suppleant);
 		}
 		
 }

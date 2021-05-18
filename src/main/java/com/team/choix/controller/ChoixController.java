@@ -37,11 +37,12 @@ public class ChoixController {
     		@ModelAttribute Choix choix,
     		BindingResult errors) {
     	try {
-    		List<String> candidats = new ArrayList<>(Arrays.asList(choix.getPrenoms()));
-    		System.out.println(candidats);
+    		List<String> candidats = new ArrayList<>(Arrays.asList(choix.getPrenoms().split("\n")));
     	String newChoix = choixService.selectHasard(candidats);
+    	String newSuppleant = choixService.suppleant(candidats, newChoix);
     	model.addAttribute("newChoix", newChoix);
-    	return "resultChoix";
+    	model.addAttribute("newSuppleant", newSuppleant);
+    	return "index";
     	}
      catch (Exception ex) {
     	 ex.printStackTrace();
