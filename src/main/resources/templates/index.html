@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE xhtml>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
@@ -16,8 +16,8 @@
 		<textarea id="prenoms" th:field="*{prenoms}"></textarea>
 		<button type="submit" id="appelChoix">choisir</button>
 	</form>
-	<label>Version du build : </label><label th:text=${@environment.getProperty("build.version")} />
+	<span>Version du build : </span><span th:text=${@environment.getProperty("build.version")} />
 
-	<!-- 	<div id="result" th:field="*{result}"></div> -->
+		<div id="result" th:text="${newChoix}"></div>
 </body>
 </html>
