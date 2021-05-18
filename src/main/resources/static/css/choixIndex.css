@@ -1,16 +1,20 @@
 @charset "UTF-8";
 
 body {
-	background-color : darkgrey;
+	background-color : #fff8e1;
 	display :flex;
 	align-items : center;
 	flex-direction : column;
+	font-family: arial;
 }
 
 textarea {
-	height : 30vh;
-	width : 20vw;
-	margin : 10px
+	height : 50vh;
+	width : 30vw;
+	margin : 10px;
+	padding : 10px;
+	font-family: arial;
+	font-size : xx-large;
 }
 
 form {
@@ -19,5 +23,24 @@ form {
 }
 
 button {
-	margin : 10px
+	margin : 10px;
+	font-family: arial;
+}
+
+#result{
+	margin : 10px;
+	background-color :  #e0f7fa;
+	border : solid 1px;
+	padding : 10px;
+	width : 30vw;
+	font-family : Arial, Helvetica, sans-serif;
+	display : flex;
+	flex-direction : column;
+	align-items: center;
+}
+
+#newChoix{
+	font-weight: bold;
+	font-size: xx-large;
+	margin : 10px 5px;
 }
