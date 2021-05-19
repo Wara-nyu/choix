@@ -27,7 +27,7 @@ button {
 	font-family: arial;
 }
 
-#result{
+#resultat{
 	margin : 10px;
 	background-color :  #e0f7fa;
 	border : solid 1px;
@@ -39,8 +39,11 @@ button {
 	align-items: center;
 }
 
-#newChoix{
+#nouveauPompier{
 	font-weight: bold;
 	font-size: xx-large;
 	margin : 10px 5px;
+	background-image: linear-gradient(to left, violet, indigo, blue, green, orange, red);   
+	-webkit-background-clip: text;
+  	color: transparent;
 }

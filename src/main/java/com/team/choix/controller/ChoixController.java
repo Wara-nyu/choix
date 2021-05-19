@@ -34,14 +34,15 @@ public class ChoixController {
     
     @PostMapping(value={"/", "/index"})
     public String choixSubmit(Model model,
-    		@ModelAttribute Choix choix,
-    		BindingResult errors) {
+    		@ModelAttribute("choix") Choix choix
+//    		BindingResult errors
+    		) {
     	try {
     		List<String> candidats = new ArrayList<>(Arrays.asList(choix.getPrenoms().split("\n")));
-    	String newChoix = choixService.selectHasard(candidats);
-    	String newSuppleant = choixService.suppleant(candidats, newChoix);
-    	model.addAttribute("newChoix", newChoix);
-    	model.addAttribute("newSuppleant", newSuppleant);
+    	String nouveauPompier = choixService.selectHasard(candidats);
+    	String nouveauSuppleant = choixService.suppleant(candidats, nouveauPompier);
+    	model.addAttribute("nouveauPompier", nouveauPompier);
+    	model.addAttribute("nouveauSuppleant", nouveauSuppleant);
     	return "index";
     	}
      catch (Exception ex) {
