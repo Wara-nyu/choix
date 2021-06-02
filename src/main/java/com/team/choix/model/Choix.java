@@ -7,6 +7,9 @@ public class Choix {
     public Choix(final String prenomsParDefautValue) {
         prenoms = prenomsParDefautValue;
     }
+    
+    public Choix() {
+    }
 
 	public String getPrenoms() {
 		return prenoms;

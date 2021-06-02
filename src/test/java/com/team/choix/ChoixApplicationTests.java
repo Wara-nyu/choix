@@ -17,7 +17,7 @@ class ChoixApplicationTests {
 
 	@Test
 	public void test() {
-		List<String> prenoms = Arrays.asList("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara");
+		List<String> prenoms = List.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara");
 		ChoixService choisi = new ChoixService();
 		String nom = choisi.selectHasard(prenoms);
 
@@ -27,7 +27,7 @@ class ChoixApplicationTests {
 	
 	@Test
 	public void testSuppleant() throws Exception {
-		List<String> prenoms = new ArrayList<>(Arrays.asList("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara"));
+		List<String> prenoms = new ArrayList<>(List.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara"));
 		ChoixService choisi = new ChoixService();
 		String nom = choisi.selectHasard(prenoms);
 			

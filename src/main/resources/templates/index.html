@@ -5,7 +5,6 @@
 <title>Liste des candidats</title>
 	<link rel="stylesheet" th:href="@{/css/choixIndex.css}" media="screen" type="text/css">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<!-- 	<script type ="text/javascript" th:src="@{/js/indexJS.js}"></script> -->
 </head>
 
 <body>
@@ -13,12 +12,12 @@
 
 	<form method="POST" th:object="${choix}" th:action="@{/index}">
 		<textarea id="prenoms" th:field="*{prenoms}"></textarea>
-		<button type="submit" id="appelChoix">choisir</button>
+		<button type="submit">choisir</button>
 	</form>
-<!-- 	<span>Version du build : <span th:text=${@environment.getProperty("build.version")} /></span> -->
 	<div id="resultat" th:if="${nouveauPompier != null}">
 		<div id="nouveauPompier" th:text="'Pompier: '  + ${nouveauPompier}"></div>
 		<div th:text="'Suppléant: '  + ${nouveauSuppleant}"></div>
 	</div>
+<!-- 	<span>Version du build : <span th:text=${@environment.getProperty("build.version")} /></span> -->
 </body>
 </html>

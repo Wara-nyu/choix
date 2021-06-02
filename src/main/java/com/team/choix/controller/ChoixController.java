@@ -1,7 +1,6 @@
 package com.team.choix.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,31 +13,35 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.team.choix.model.Choix;
+import com.team.choix.model.Participant;
 import com.team.choix.service.ChoixService;
+import com.team.choix.service.ParticipantService;
 
 @Controller
 public class ChoixController {
 	@Autowired
 	ChoixService choixService;
+	@Autowired
+	ParticipantService participantService;
 	
 	@Value("${prenoms.parDefaut}")
 	private String prenoms;
 	
-//	public String saveStudent(@ModelAttribute Student student, , Model model) {
-
     @GetMapping(value = { "/", "/index" })
-    public String index(Model model) {
-    	model.addAttribute("choix", new Choix(prenoms));
+    public String index(Model model,
+    		@ModelAttribute("participant") Participant participant) {
+    	List<String> participants = participantService.getListFirstnames();
+    	model.addAttribute("participants", participants);
+    	model.addAttribute("choix", new Choix());
     	return "index";
     }
     
     @PostMapping(value={"/", "/index"})
     public String choixSubmit(Model model,
-    		@ModelAttribute("choix") Choix choix
-//    		BindingResult errors
-    		) {
+    		@ModelAttribute("choix") Choix choix,
+    		BindingResult errors) {
     	try {
-    		List<String> candidats = new ArrayList<>(Arrays.asList(choix.getPrenoms().split("\n")));
+    		List<String> candidats = new ArrayList<>(List.of(choix.getPrenoms().split("\n")));
     	String nouveauPompier = choixService.selectHasard(candidats);
     	String nouveauSuppleant = choixService.suppleant(candidats, nouveauPompier);
     	model.addAttribute("nouveauPompier", nouveauPompier);
@@ -50,4 +53,12 @@ public class ChoixController {
     	 return "error";
      }
 	}
+    
+//    @PostMapping(value= {"/beta"})
+//    public String test_Particitant(Model model,
+//    		@ModelAttribute("participant") Participant participant) {
+//    	List<String> participants = participantService.getListFirstnames();
+//    	model.addAttribute("participants", participants);
+//    	return "beta";
+//    }
 }

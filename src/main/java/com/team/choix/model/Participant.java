@@ -28,6 +28,20 @@ public class Participant {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 	
 	public Integer getSelectionCount() {
 		return selectionCount;
@@ -41,19 +55,5 @@ public class Participant {
 	}
 	public void setLastSelectionDate(LocalDate lastSelectionDate) {
 		this.lastSelectionDate = lastSelectionDate;
-	}
-	
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
 	}
 }

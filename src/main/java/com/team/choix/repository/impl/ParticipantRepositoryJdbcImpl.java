@@ -25,9 +25,10 @@ public class ParticipantRepositoryJdbcImpl implements ParticipantRepository {
                 rs.getString("firstName"),
                 rs.getString("lastName"),
                 rs.getInt("selectionCount"),
+                rs.getDate("lastSelectionDate") != null ? 
                 rs.getDate("lastSelectionDate").toInstant()
                 .atZone(ZoneId.systemDefault())
-                .toLocalDate()));
+                .toLocalDate() : null));
 	}
 
 	@Override
