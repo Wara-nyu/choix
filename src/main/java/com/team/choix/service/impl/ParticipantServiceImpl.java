@@ -28,17 +28,19 @@ public class ParticipantServiceImpl implements ParticipantService{
 	}
 
 	@Override
-	public List<String> getListFirstnames() {
-		List<Participant> participants = participantRepository.list();
+//	public List<String> getListFirstnames() {
+//		List<Participant> participants = participantRepository.list();
 //		List<String> firstNames = new ArrayList<String>();
 //		for (Participant participant : participants) {
 //			firstNames.add(participant.getFirstName());
 //		}
-		List<String> firstNames = participants.stream().map(participant -> participant.getFirstName()).collect(Collectors.toList());
-		
+//		List<String> firstNames = participants.stream().map(participant -> participant.getFirstName()).collect(Collectors.toList());
+//		return firstNames;
+//	}
+	
+	public String getListFirstnames() {
+		List<Participant> participants = participantRepository.list();
+		String firstNames = participants.stream().map(participant -> participant.getFirstName()).collect(Collectors.joining("\n"));
 		return firstNames;
-	}
-	
-	//string → list ou String ← list ?
-	
+	}	
 }

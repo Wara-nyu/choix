@@ -37,18 +37,24 @@ public class ParticipantServiceImplTest {
 
 	}
 
+//	@Test
+//	public void testGetListFirstnames() throws Exception {
+//		//given
+//		List <String> expected = Arrays.asList("Abdelaziz", "Arthur", "Christelle", "Elisabeth", "Frederic", "Jonathan", "Laurent", "Mathieu", "Thomas", "Wara");
+//		//when
+//		List<String> result = service.getListFirstnames();
+//		//then
+//		assertNotNull(result);
+//		assertEquals(10, result.size());
+//		assertEquals(expected, result);
+//	}
+	
 	@Test
-	public void testGetListFirstnames() throws Exception {
-		//given
-		List <String> expected = Arrays.asList("Abdelaziz", "Arthur", "Christelle", "Elisabeth", "Frederic", "Jonathan", "Laurent", "Mathieu", "Thomas", "Wara");
-		//when
-		List<String> result = service.getListFirstnames();
-		//then
-		assertNotNull(result);
-		assertEquals(10, result.size());
+	public void testGetListFirstnamesString() {
+		String expected = "Abdelaziz\nArthur\nChristelle\nElisabeth\nFrederic\nJonathan\nLaurent\nMathieu\nThomas\nWara";
+		String result = service.getListFirstnames();
+		
 		assertEquals(expected, result);
 	}
-	
-
 	
 }
