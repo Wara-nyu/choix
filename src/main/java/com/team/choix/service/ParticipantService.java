@@ -10,7 +10,6 @@ import com.team.choix.model.Participant;
 public interface ParticipantService {
 	List<Participant> getAll();
 
-//	List<String> getListFirstnames();
-	String getListFirstnames();
+	List<String> getListFirstnames();
 	
 }

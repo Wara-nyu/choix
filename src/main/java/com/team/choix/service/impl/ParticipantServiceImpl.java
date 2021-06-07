@@ -1,5 +1,6 @@
 package com.team.choix.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,19 +29,19 @@ public class ParticipantServiceImpl implements ParticipantService{
 	}
 
 	@Override
-//	public List<String> getListFirstnames() {
-//		List<Participant> participants = participantRepository.list();
+	public List<String> getListFirstnames() {
+		List<Participant> participants = participantRepository.list();
 //		List<String> firstNames = new ArrayList<String>();
 //		for (Participant participant : participants) {
 //			firstNames.add(participant.getFirstName());
 //		}
-//		List<String> firstNames = participants.stream().map(participant -> participant.getFirstName()).collect(Collectors.toList());
-//		return firstNames;
-//	}
-	
-	public String getListFirstnames() {
-		List<Participant> participants = participantRepository.list();
-		String firstNames = participants.stream().map(participant -> participant.getFirstName()).collect(Collectors.joining("\n"));
+		List<String> firstNames = participants.stream().map(participant -> participant.getFirstName()).collect(Collectors.toList());
 		return firstNames;
-	}	
+	}
+//	
+//	public String getListFirstnames() {
+//		List<Participant> participants = participantRepository.list();
+//		String firstNames = participants.stream().map(participant -> participant.getFirstName()).collect(Collectors.joining("\n"));
+//		return firstNames;
+//	}	
 }
