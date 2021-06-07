@@ -20,28 +20,13 @@ public class ParticipantServiceImpl implements ParticipantService{
 	
 	@Override
 	public List<Participant> getAll() {
-//		Participant participant = new Participant();
-//		participant.setFirstName("firstName");
-//		participant.setLastName("lastName");
-//		List<Participant> listParticipant = new ArrayList<>(List.of(participant));
-//		return listParticipant;
 		return participantRepository.list();
 	}
 
 	@Override
 	public List<String> getListFirstnames() {
 		List<Participant> participants = participantRepository.list();
-//		List<String> firstNames = new ArrayList<String>();
-//		for (Participant participant : participants) {
-//			firstNames.add(participant.getFirstName());
-//		}
 		List<String> firstNames = participants.stream().map(participant -> participant.getFirstName()).collect(Collectors.toList());
 		return firstNames;
 	}
-//	
-//	public String getListFirstnames() {
-//		List<Participant> participants = participantRepository.list();
-//		String firstNames = participants.stream().map(participant -> participant.getFirstName()).collect(Collectors.joining("\n"));
-//		return firstNames;
-//	}	
 }

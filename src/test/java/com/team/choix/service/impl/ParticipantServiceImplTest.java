@@ -22,12 +22,6 @@ public class ParticipantServiceImplTest {
 	@Autowired
 	ParticipantService service;
 	
-//	@Test
-//		public void testGetAll() {
-//			List<Participant> result = service.getAll();
-//			assertEquals(1, result.size());
-//		}
-	
 	@Test
 	public void testGetAll() {
 		List<Participant> result = service.getAll();
@@ -48,14 +42,5 @@ public class ParticipantServiceImplTest {
 		assertEquals(10, result.size());
 		assertEquals(expected, result);
 	}
-	
-//	@Test
-//	public void testGetListFirstnamesString() {
-//		String expected = "Abdelaziz\nArthur\nChristelle\nElisabeth\nFrederic\nJonathan\nLaurent\nMathieu\nThomas\nWara";
-//		//propre ?
-//		String result = service.getListFirstnames();
-//		
-//		assertEquals(expected, result);
-//	}
 	
 }

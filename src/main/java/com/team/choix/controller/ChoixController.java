@@ -24,9 +24,6 @@ public class ChoixController {
 	@Autowired
 	ParticipantService participantService;
 
-//	@Value("${prenoms.parDefaut}")
-//	private String prenoms;
-
 	@GetMapping(value = { "/", "/index" })
 	public String index(Model model, @ModelAttribute("participant") Participant participant) {
 		String participants = String.join(SEPARATOR, participantService.getListFirstnames());
@@ -50,11 +47,4 @@ public class ChoixController {
 		}
 	}
 
-//    @PostMapping(value= {"/beta"})
-//    public String test_Particitant(Model model,
-//    		@ModelAttribute("participant") Participant participant) {
-//    	List<String> participants = participantService.getListFirstnames();
-//    	model.addAttribute("participants", participants);
-//    	return "beta";
-//    }
 }
