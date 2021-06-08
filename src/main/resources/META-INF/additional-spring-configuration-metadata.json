@@ -8,5 +8,10 @@
     "name": "prenoms.parDefaut",
     "type": "java.lang.String",
     "description": "A description for 'prenoms.parDefaut'"
+  },
+  {
+    "name": "SEPARATOR.default",
+    "type": "java.lang.String",
+    "description": "A description for 'SEPARATOR.default'"
   }
 ]}
