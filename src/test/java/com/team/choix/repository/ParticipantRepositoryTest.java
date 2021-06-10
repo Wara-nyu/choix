@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,7 @@ public class ParticipantRepositoryTest {
 	@Autowired
 	ParticipantRepository repository;
 	
-	@Test
+	@Test @Disabled
 	public void testCreate() throws Exception {
 		Participant participant = new Participant();
 		participant.setFirstName("firstName");
@@ -27,13 +28,13 @@ public class ParticipantRepositoryTest {
 		assertNotNull(result.getId());
 	}
 
-	@Test
+	@Test @Disabled
 	public void testList() throws Exception {
 		List<Participant> result = repository.list();
 		assertEquals(1, result.size());
 	}
 
-	@Test
+	@Test @Disabled
 	public void testGet() throws Exception {
 		Participant result = repository.get(1L);
 		assertNotNull(result);

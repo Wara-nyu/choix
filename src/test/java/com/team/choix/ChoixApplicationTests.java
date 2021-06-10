@@ -1,10 +1,11 @@
 package com.team.choix;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -16,25 +17,36 @@ import com.team.choix.service.ChoixService;
 class ChoixApplicationTests {
 
 	@Test
-	public void test() {
-		List<String> prenoms = List.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara");
-		ChoixService choisi = new ChoixService();
-		String nom = choisi.selectHasard(prenoms);
+	public void testSetFirstPersonGetANameFromTheList() {
+		List<String> listOfNames = List.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara");
+		ChoixService choixService = new ChoixService();
+		String name = choixService.setFirstPerson(listOfNames);
 
-		assertTrue(prenoms.contains(nom));
-
+		assertTrue(listOfNames.contains(name));
 	}
 	
 	@Test
-	public void testSuppleant() throws Exception {
-		List<String> prenoms = new ArrayList<>(List.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara"));
-		ChoixService choisi = new ChoixService();
-		String nom = choisi.selectHasard(prenoms);
+	public void testSetSecondPersonGetANamefromTheListDifferentFromTheFirst() throws Exception {
+		List<String> listOfNames = new ArrayList<>(List.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara"));
+		ChoixService choixService = new ChoixService();
+		String name = "Thomas";
 			
-		String suppleant = choisi.suppleant(prenoms, nom);
+		String secondName = choixService.setSecondPerson(listOfNames, name);
 			
-		assertTrue(prenoms.contains(suppleant));
-		assertNotEquals(nom, suppleant);
+		assertTrue(listOfNames.contains(secondName));
+		assertNotEquals(name, secondName);
 		}
 		
+	@Test
+	public void testOnlyNamesCanBeChosen() {
+		List<String> inputList = List.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara", " ", "l", "f   ", "");
+		ChoixService choixService = new ChoixService();
+		
+		List<String> result = choixService.onlyNames(inputList);
+		
+		assertFalse(result.contains(" "));
+		assertFalse(result.contains(""));
+		assertFalse(result.contains("l"));
+		assertFalse(result.contains("f   "));
+	}
 }

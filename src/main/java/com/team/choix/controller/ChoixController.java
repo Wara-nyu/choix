@@ -20,7 +20,7 @@ import com.team.choix.service.ParticipantService;
 @Controller
 public class ChoixController {
 	@Value("${SEPARATOR.default}")
-	private String SEPARATOR;
+	private String separator;
 	
 	@Autowired
 	ChoixService choixService;
@@ -30,7 +30,7 @@ public class ChoixController {
 
 	@GetMapping(value = { "/", "/index" })
 	public String index(Model model, @ModelAttribute("participant") Participant participant) {
-		String participants = String.join(SEPARATOR, participantService.getListFirstnames());
+		String participants = String.join(separator, participantService.getListFirstnames());
 		model.addAttribute("participants", participants);
 		model.addAttribute("choix", new Choix(participants));
 		return "index";
@@ -39,9 +39,9 @@ public class ChoixController {
 	@PostMapping(value = { "/", "/index" })
 	public String choixSubmit(Model model, @ModelAttribute("choix") Choix choix, BindingResult errors) {
 		try {
-			List<String> candidats = new ArrayList<>(List.of(choix.getPrenoms().split(SEPARATOR)));
-			String nouveauPompier = choixService.selectHasard(candidats);
-			String nouveauSuppleant = choixService.suppleant(candidats, nouveauPompier);
+			List<String> candidats = new ArrayList<>(List.of(choix.getPrenoms().split(separator)));
+			String nouveauPompier = choixService.setFirstPerson(candidats);
+			String nouveauSuppleant = choixService.setSecondPerson(candidats, nouveauPompier);
 			model.addAttribute("nouveauPompier", nouveauPompier);
 			model.addAttribute("nouveauSuppleant", nouveauSuppleant);
 			return "index";
