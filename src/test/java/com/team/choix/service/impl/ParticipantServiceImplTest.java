@@ -7,18 +7,18 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Profile;
 
 import com.team.choix.model.Participant;
 import com.team.choix.service.ParticipantService;
 
 @Profile("test")
-@SpringBootTest
+//@SpringBootTest
 public class ParticipantServiceImplTest {
 
-	@Autowired
+//	@Autowired
 	ParticipantService service;
 	
 	@Test
