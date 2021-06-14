@@ -13,5 +13,10 @@
     "name": "SEPARATOR.default",
     "type": "java.lang.String",
     "description": "A description for 'SEPARATOR.default'"
+  },
+  {
+    "name": "separator.default",
+    "type": "java.lang.String",
+    "description": "A description for 'separator.default'"
   }
 ]}

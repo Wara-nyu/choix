@@ -15,38 +15,52 @@ import com.team.choix.service.ChoixService;
 
 @SpringBootTest
 class ChoixApplicationTests {
+	
+	ChoixService choixService = new ChoixService();
+	
+	private List<String> inputList() {
+		List<String> inputList = List.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara", " ", "l", "f   ", "");
+		return inputList;
+	}
 
 	@Test
 	public void testSetFirstPersonGetANameFromTheList() {
-		List<String> listOfNames = List.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara");
-		ChoixService choixService = new ChoixService();
-		String name = choixService.setFirstPerson(listOfNames);
+		List<String> inputList = inputList();
+		
+		String name = choixService.setFirstPerson(inputList);
 
-		assertTrue(listOfNames.contains(name));
+		assertTrue(inputList.contains(name));
+		assertFalse(name.equals(" "));
+		assertFalse(name.equals(""));
+		assertFalse(name.equals("l"));
+		assertFalse(name.equals("f   "));
 	}
 	
 	@Test
-	public void testSetSecondPersonGetANamefromTheListDifferentFromTheFirst() throws Exception {
-		List<String> listOfNames = new ArrayList<>(List.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara"));
-		ChoixService choixService = new ChoixService();
+	public void testSetSecondPersonGetANamefromTheListDifferentFromTheFirst() {
+		List<String> inputList = new ArrayList<>(inputList());
 		String name = "Thomas";
 			
-		String secondName = choixService.setSecondPerson(listOfNames, name);
+		String secondName = choixService.setSecondPerson(inputList, name);
 			
-		assertTrue(listOfNames.contains(secondName));
+		assertTrue(inputList.contains(secondName));
 		assertNotEquals(name, secondName);
+		assertFalse(secondName.equals(" "));
+		assertFalse(secondName.equals(""));
+		assertFalse(secondName.equals("l"));
+		assertFalse(secondName.equals("f   "));
 		}
 		
 	@Test
-	public void testOnlyNamesCanBeChosen() {
-		List<String> inputList = List.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara", " ", "l", "f   ", "");
-		ChoixService choixService = new ChoixService();
+	public void testSetOnlyNamesCanBeChosen() {
+		List<String> inputList = inputList();
 		
-		List<String> result = choixService.onlyNames(inputList);
+		List<String> result = choixService.setOnlyNames(inputList);
 		
 		assertFalse(result.contains(" "));
 		assertFalse(result.contains(""));
 		assertFalse(result.contains("l"));
 		assertFalse(result.contains("f   "));
 	}
+
 }

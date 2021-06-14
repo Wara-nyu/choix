@@ -19,7 +19,7 @@ import com.team.choix.service.ParticipantService;
 
 @Controller
 public class ChoixController {
-	@Value("${SEPARATOR.default}")
+	@Value("${separator.default}")
 	private String separator;
 	
 	@Autowired
@@ -40,10 +40,10 @@ public class ChoixController {
 	public String choixSubmit(Model model, @ModelAttribute("choix") Choix choix, BindingResult errors) {
 		try {
 			List<String> candidats = new ArrayList<>(List.of(choix.getPrenoms().split(separator)));
-			String nouveauPompier = choixService.setFirstPerson(candidats);
-			String nouveauSuppleant = choixService.setSecondPerson(candidats, nouveauPompier);
-			model.addAttribute("nouveauPompier", nouveauPompier);
-			model.addAttribute("nouveauSuppleant", nouveauSuppleant);
+			String firstPerson = choixService.setFirstPerson(candidats);
+			String secondPerson = choixService.setSecondPerson(candidats, firstPerson);
+			model.addAttribute("nouveauPompier", firstPerson);
+			model.addAttribute("nouveauSuppleant", secondPerson);
 			return "index";
 		} catch (Exception ex) {
 			ex.printStackTrace();

@@ -19,7 +19,8 @@ public class ParticipantRepositoryTest {
 	@Autowired
 	ParticipantRepository repository;
 	
-	@Test @Disabled
+	@Test
+	@Disabled
 	public void testCreate() throws Exception {
 		Participant participant = new Participant();
 		participant.setFirstName("firstName");
@@ -28,13 +29,15 @@ public class ParticipantRepositoryTest {
 		assertNotNull(result.getId());
 	}
 
-	@Test @Disabled
+	@Test
+	@Disabled
 	public void testList() throws Exception {
 		List<Participant> result = repository.list();
 		assertEquals(1, result.size());
 	}
 
-	@Test @Disabled
+	@Test
+	@Disabled
 	public void testGet() throws Exception {
 		Participant result = repository.get(1L);
 		assertNotNull(result);
