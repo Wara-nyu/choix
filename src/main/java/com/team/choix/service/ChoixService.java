@@ -12,7 +12,8 @@ public class ChoixService {
 	private String chooseItemRandomlyInList(List<String> listOfNames) {
 		List<String> cleanList = setOnlyNames(listOfNames); 
 		Random rand = new Random();
-		return cleanList.get(rand.nextInt(cleanList.size()));
+		String item = cleanList.get(rand.nextInt(cleanList.size()));
+		return item;
 	}
 	
 	public String setFirstPerson (List<String> list) {

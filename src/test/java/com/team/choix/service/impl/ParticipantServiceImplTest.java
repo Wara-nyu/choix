@@ -1,6 +1,5 @@
 package com.team.choix.service.impl;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -24,6 +23,7 @@ public class ParticipantServiceImplTest {
 	
 	@Test
 	public void testGetAll() {
+		//mock ?
 		List<Participant> result = service.getAll();
 		assertEquals(10, result.size());
 		assertEquals("Arthur", result.get(1).getFirstName());

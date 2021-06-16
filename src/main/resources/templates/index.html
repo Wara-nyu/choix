@@ -15,8 +15,8 @@
 		<button type="submit">choisir</button>
 	</form>
 	<div id="resultat" th:if="${nouveauPompier != null}">
-		<div id="nouveauPompier" th:text="'Pompier: '  + ${nouveauPompier}"></div>
-		<div th:text="'Suppléant: '  + ${nouveauSuppleant}"></div>
+		<div id="nouveauPompier" th:text="${nouveauPompier}"></div>
+<!-- 		<div th:text="'Suppléant: '  + ${nouveauSuppleant}"></div> -->
 	</div>
 <!-- 	<span>Version du build : <span th:text=${@environment.getProperty("build.version")} /></span> -->
 </body>

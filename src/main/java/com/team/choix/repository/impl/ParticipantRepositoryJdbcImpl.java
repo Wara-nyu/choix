@@ -39,7 +39,7 @@ public class ParticipantRepositoryJdbcImpl implements ParticipantRepository {
 
 	@Override
 	public Participant create(Participant participant) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
