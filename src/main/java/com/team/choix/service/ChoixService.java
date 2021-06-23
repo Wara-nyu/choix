@@ -17,6 +17,7 @@ public class ChoixService {
 		}
 		String item = cleanList.get(rand.nextInt(cleanList.size()));
 		return item;
+		
 	}
 	
 	public String setFirstPerson (List<String> list) {

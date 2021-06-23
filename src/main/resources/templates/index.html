@@ -10,14 +10,30 @@
 <body>
 	<h1>Entrez la liste des personnes</h1>
 
-	<form method="POST" th:object="${choix}" th:action="@{/index}">
-		<textarea id="prenoms" th:field="*{prenoms}"></textarea>
-		<button type="submit">choisir</button>
-	</form>
-	<div id="resultat" th:if="${nouveauPompier != null}">
-		<div id="nouveauPompier" th:text="${nouveauPompier}"></div>
-<!-- 		<div th:text="'Suppléant: '  + ${nouveauSuppleant}"></div> -->
+	<div id="form">
+		<form method="POST" th:object="${choix}" th:action="@{/index}">
+			<textarea id="prenoms" th:field="*{prenoms}"></textarea>
+<!-- 			<textarea id="juniors" th:field="*{juniors}"></textarea> -->
+<!-- 			<textarea id="seniors" th:field="*{seniors}"></textarea> -->
+			<button type="submit">choisir</button>
+		</form>
 	</div>
-<!-- 	<span>Version du build : <span th:text=${@environment.getProperty("build.version")} /></span> -->
+	
+	<div th:if="${nouveauPompier != null}" class="resultat">
+		<div class="nouvellePersonne" th:text="'Pompier : ' + ${nouveauPompier}"></div>
+		<div th:text="'Suppléant : '  + ${nouveauSuppleantPompier}"></div>
+	</div>
+	
+	<div th:if="${nouveauRevieweur != null}" class="resultat">
+		<div class="nouvellePersonne" th:text="'Revieweur : ' + ${nouveauRevieweur}"></div>
+		<div th:text="'Suppléant : '  + ${nouveauSuppleantRevieweur}"></div>
+	</div>
+	
+	<div th:if="${nouveauVersionneur != null}" class="resultat">
+		<div class="nouvellePersonne" th:text="'Versionneur : ' + ${nouveauVersionneur}"></div>
+		<div th:text="'Suppléant : '  + ${nouveauSuppleantVersionneur}"></div>
+	</div>
+	
+	<span>Version du build : <span th:text=${@environment.getProperty("build.version")} /></span>
 </body>
 </html>
