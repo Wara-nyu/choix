@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class ChoixApplication {
 	
-	private static final Logger LOGGER = LogManager.getLogger(ChoixApplication.class);
+//	private static final Logger LOGGER = LogManager.getLogger(ChoixApplication.class);
 	
 	public static void main(String[] args) {
-		LOGGER.debug("debuging");
+//		LOGGER.debug("debuging");
 		SpringApplication.run(ChoixApplication.class, args);
 	}
 

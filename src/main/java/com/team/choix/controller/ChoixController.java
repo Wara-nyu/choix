@@ -43,7 +43,7 @@ public class ChoixController {
 			String firstPerson = choixService.setFirstPerson(candidats);
 			String secondPerson = choixService.setSecondPerson(candidats, firstPerson);
 			model.addAttribute("nouveauPompier", firstPerson);
-			model.addAttribute("nouveauSuppleant", secondPerson);
+			model.addAttribute("nouveauSuppleantPompier", secondPerson);
 			return "index";
 		} catch (Exception ex) {
 			ex.printStackTrace();
