@@ -12,6 +12,9 @@ public class ChoixService {
 	private String chooseItemRandomlyInList(List<String> listOfNames) {
 		List<String> cleanList = setOnlyNames(listOfNames); 
 		Random rand = new Random();
+		if (listOfNames.isEmpty()) {
+			return "erreur";
+		}
 		String item = cleanList.get(rand.nextInt(cleanList.size()));
 		return item;
 	}

@@ -24,7 +24,7 @@ public class ParticipantServiceImpl implements ParticipantService{
 
 	@Override
 	public List<String> getListFirstnames() {
-		List<Participant> participants = participantRepository.list();
+		List<Participant> participants = getAll();
 		List<String> firstNames = participants.stream().map(participant -> participant.getFirstName()).collect(Collectors.toList());
 		return firstNames;
 	}

@@ -69,7 +69,7 @@ public class ChoixServiceTest {
 		
 		String result = choixService.setFirstPerson(input);
 		
-		assertEquals("Veuillez entrer plusieurs noms", result);
+		assertEquals("erreur", result);
 	}
 
 }

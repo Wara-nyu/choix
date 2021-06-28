@@ -45,6 +45,7 @@ public class ChoixController {
 			model.addAttribute("nouveauPompier", firstPerson);
 			model.addAttribute("nouveauSuppleantPompier", secondPerson);
 			return "index";
+			//construire une exception maison (service pour le géré throw...)
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			return "error";
