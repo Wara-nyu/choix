@@ -17,7 +17,11 @@ public class ChoixService {
 		}
 		String item = cleanList.get(rand.nextInt(cleanList.size()));
 		return item;
-		
+	}
+	
+	public List<String> setOnlyNames(List<String> inputList){
+		List<String> cleanList = inputList.stream().map(String::strip).filter(prenom -> !(prenom.length()<=1)).collect(Collectors.toList());
+		return cleanList;
 	}
 	
 	public String setFirstPerson (List<String> list) {
@@ -29,8 +33,9 @@ public class ChoixService {
 		return chooseItemRandomlyInList(list);
 	}
 	
-	public List<String> setOnlyNames(List<String> inputList){
-		List<String> cleanList = inputList.stream().map(String::strip).filter(prenom -> !(prenom.length()<=1)).collect(Collectors.toList());
-		return cleanList;
+	public String selectAnotherPerson(List<String> input, List<String> notThem) {
+		List<String> updateList = input.stream().filter(person -> !(notThem.contains(person))).collect(Collectors.toList());
+		return chooseItemRandomlyInList(updateList);
 	}
+	
 }

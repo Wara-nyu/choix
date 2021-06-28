@@ -1,11 +1,13 @@
 package com.team.choix.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -70,6 +72,19 @@ public class ChoixServiceTest {
 		String result = choixService.setFirstPerson(input);
 		
 		assertEquals("erreur", result);
+	}
+	
+	@Test
+	public void pompierShouldBeDiffrentFromReviewerAndVersionner() {
+		for(int i = 0; i <100; i++) {
+		List<String> inputList = List.of("Arthur", "Thomas", "Frederic");
+		List<String> reviewerAndVersionner = List.of("Arthur", "Thomas");
+		
+		String result = choixService.selectAnotherPerson(inputList, reviewerAndVersionner);
+		
+		assertTrue(inputList.contains(result));
+		assertFalse(reviewerAndVersionner.contains(result));
+		}
 	}
 
 }
