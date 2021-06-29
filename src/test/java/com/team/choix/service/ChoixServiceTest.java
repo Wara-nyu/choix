@@ -3,6 +3,7 @@ package com.team.choix.service;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -19,41 +20,12 @@ public class ChoixServiceTest {
 		return inputList;
 	}
 
-	// bientôt inutile
-//	@Test
-//	public void testSetFirstPersonGetANameFromTheList() {
-//		List<String> inputList = inputList();
-//
-//		String name = choixService.setFirstPerson(inputList);
-//
-//		assertTrue(inputList.contains(name));
-//		assertFalse(name.equals(" "));
-//		assertFalse(name.equals(""));
-//		assertFalse(name.equals("l"));
-//		assertFalse(name.equals("f   "));
-//	}
-
-	// bientôt inutile
-//	@Test
-//	public void testSetSecondPersonGetANamefromTheListDifferentFromTheFirst() {
-//		List<String> inputList = new ArrayList<>(inputList());
-//		String name = "Thomas";
-//
-//		String secondName = choixService.setSecondPerson(inputList, name);
-//
-//		assertTrue(inputList.contains(secondName));
-//		assertNotEquals(name, secondName);
-//		assertFalse(secondName.equals(" "));
-//		assertFalse(secondName.equals(""));
-//		assertFalse(secondName.equals("l"));
-//		assertFalse(secondName.equals("f   "));
-//	}
 
 	@Test
-	public void testSetOnlyNamesCanBeChosen() {
+	public void ShouldReturnAListOfPlosibleName() {
 		Stream<String> inputList = inputList();
 
-		List<String> result = choixService.setOnlyNames(inputList);
+		List<String> result = choixService.returnListOfPlosibleNames(inputList);
 
 		assertFalse(result.contains(" "));
 		assertFalse(result.contains(""));
@@ -61,6 +33,7 @@ public class ChoixServiceTest {
 		assertFalse(result.contains("f   "));
 	}
 
+	//a retravailler
 //	@Test
 //	public void testIfInputIsEmptyListShouldReturnStringErreur() {
 //		List<String> input = Collections.emptyList();
@@ -71,37 +44,34 @@ public class ChoixServiceTest {
 //	}
 
 	@Test
-	public void pompierShouldBeDiffrentFromReviewerAndVersionner() {
+	public void shouldReturnTheStream() {
+		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
+
+		List<String> updateList = choixService.returnStreamWithoutPeopleAlreadySelected(inputList).collect(Collectors.toList());
+		
+		assertEquals(inputList, updateList);
+	}
+	
+	@Test
+	public void shouldReturnAStreamWithoutOneSelectedPerson() {
+		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
+		String pompier = "Thomas";
+		
+		List<String> updateList = choixService.returnStreamWithoutPeopleAlreadySelected(inputList, pompier).collect(Collectors.toList());
+		
+		assertFalse(updateList.contains(pompier));
+	}
+	
+	@Test
+	public void ShouldReturnAStreamWithoutTwoSelectedPeople() {
 		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
 		String pompier = "Thomas";
 		String reviewer = "Arthur";
-
-		Stream<String> updateList = choixService.returnListWithoutAlreadySelectedPerson(inputList, pompier, reviewer);
-		String result = choixService.chooseItemRandomlyInList(updateList);
 		
-		System.out.println(result);
-		assertTrue(inputList.contains(result));
-		assertNotEquals(pompier, result);
-		assertNotEquals(reviewer, result);
+		List<String> updateList = choixService.returnStreamWithoutPeopleAlreadySelected(inputList, pompier, reviewer).collect(Collectors.toList());
+		
+		assertFalse(updateList.contains(reviewer));
+		assertFalse(updateList.contains(pompier));
 	}
-
-//	@Test
-//	void testSelectAnotherPersonForNobodyElseSelectedYet() {
-//		List<String> inputList = inputList();
-//
-//		List<String>  result = choixService.selectAnotherPerson(inputList, alreadySelectedPeople);
-//
-//		assertTrue(inputList.contains(result));
-//		assertFalse(alreadySelectedPeople.contains(result));
-//	}
-//
-////	@Test
-//	void testIfSelectAnotherPersonAddTheSelectedOneToAlreadySelectPeopleList() {
-//		List<String> inputList = inputList();
-//
-//		List<String>  result = choixService.selectAnotherPerson(inputList, alreadySelectedPeople);
-//
-//		assertTrue(alreadySelectedPeople.contains(result));
-//	}
 
 }

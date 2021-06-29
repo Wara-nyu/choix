@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class ChoixService {
 	
 	public String chooseItemRandomlyInList(Stream<String> listOfNames) {
-		List<String> cleanList = setOnlyNames(listOfNames); 
+		List<String> cleanList = returnListOfPlosibleNames(listOfNames); 
 		Random rand = new Random();
 //		if (listOfNames.empty()) {
 //			return "erreur";
@@ -21,23 +21,14 @@ public class ChoixService {
 		return item;
 	}
 	
-	public List<String> setOnlyNames(Stream<String> inputList){
+	public List<String> returnListOfPlosibleNames(Stream<String> inputList){
 		List<String> cleanList = inputList.map(String::strip).filter(prenom -> !(prenom.length()<=1)).collect(Collectors.toList());
 		return cleanList;
 	}
+
 	
-//	public String setFirstPerson (List<String> list) {
-//		return chooseItemRandomlyInList(list);
-//	}
-//	
-//	public String setSecondPerson(List<String> list, String name) {
-//		list.remove(new String(name));
-//		return chooseItemRandomlyInList(list);
-//	}
-	
-	public Stream<String> returnListWithoutAlreadySelectedPerson(List<String> input, String...string) {
+	public Stream<String> returnStreamWithoutPeopleAlreadySelected(List<String> input, String...string) {
 		Stream<String> updateList = input.stream().filter(person -> !Arrays.asList(string).contains(person));
-		
 		return updateList;
 	}
 	
