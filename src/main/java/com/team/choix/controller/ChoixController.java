@@ -40,10 +40,10 @@ public class ChoixController {
 	public String choixSubmit(Model model, @ModelAttribute("choix") Choix choix, BindingResult errors) {
 		try {
 			List<String> candidats = new ArrayList<>(List.of(choix.getPrenoms().split(separator)));
-			String firstPerson = choixService.setFirstPerson(candidats);
-			String secondPerson = choixService.setSecondPerson(candidats, firstPerson);
-			model.addAttribute("nouveauPompier", firstPerson);
-			model.addAttribute("nouveauSuppleantPompier", secondPerson);
+//			String firstPerson = choixService.setFirstPerson(candidats);
+//			String secondPerson = choixService.setSecondPerson(candidats, firstPerson);
+//			model.addAttribute("nouveauPompier", firstPerson);
+//			model.addAttribute("nouveauSuppleantPompier", secondPerson);
 			return "index";
 			//construire une exception maison (service pour le géré throw...)
 		} catch (Exception ex) {
