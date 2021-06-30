@@ -11,25 +11,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class ChoixService {
 	
-	public String chooseItemRandomlyInList(Stream<String> listOfNames) {
-		List<String> cleanList = returnListOfPlosibleNames(listOfNames); 
-		Random rand = new Random();
-//		if (listOfNames.empty()) {
-//			return "erreur";
-//		}
-		String item = cleanList.get(rand.nextInt(cleanList.size()));
-		return item;
-	}
 	
-	public List<String> returnListOfPlosibleNames(Stream<String> inputList){
-		List<String> cleanList = inputList.map(String::strip).filter(prenom -> !(prenom.length()<=1)).collect(Collectors.toList());
+	public Stream<String> returnStreamOfPlaussibleNames(List<String> inputList){
+		Stream<String> cleanList = inputList.stream().map(String::strip).filter(prenom -> !(prenom.length()<=1));
 		return cleanList;
 	}
 
 	
-	public Stream<String> returnStreamWithoutPeopleAlreadySelected(List<String> input, String...string) {
-		Stream<String> updateList = input.stream().filter(person -> !Arrays.asList(string).contains(person));
+	public Stream<String> returnStreamWithoutPeopleAlreadySelected(Stream<String> cleanList, String...string) {
+		Stream<String> updateList = cleanList.filter(person -> !Arrays.asList(string).contains(person));
 		return updateList;
 	}
 	
+//	public String chooseItemRandomlyInList(List<String> listOfNames) {
+//		List<String> list = returnStreamOfPlaussibleNames(listOfNames); 
+//		Random rand = new Random();
+////		if (listOfNames.empty()) {
+////			return "erreur";
+////		}
+//		String item = list.get(rand.nextInt(list.size()));
+//		return item;
+//	}
 }

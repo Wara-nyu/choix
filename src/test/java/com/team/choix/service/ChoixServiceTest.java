@@ -14,18 +14,17 @@ public class ChoixServiceTest {
 
 	ChoixService choixService = new ChoixService();
 
-	private Stream<String> inputList() {
-		Stream<String> inputList = Stream.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara", " ", "l",
-				"f   ", "");
+	private List<String> inputList() {
+		List<String> inputList = List.of("Arthur", "Christelle", "Elisabeth", "Federic", "Thomas", "Wara", " ", "l", "f   ", "");
 		return inputList;
 	}
 
 
 	@Test
-	public void ShouldReturnAListOfPlosibleName() {
-		Stream<String> inputList = inputList();
+	public void ShouldReturnAListOfPlaussibleName() {
+		List<String> inputList = inputList();
 
-		List<String> result = choixService.returnListOfPlosibleNames(inputList);
+		List<String> result = choixService.returnStreamOfPlaussibleNames(inputList).collect(Collectors.toList());
 
 		assertFalse(result.contains(" "));
 		assertFalse(result.contains(""));
@@ -33,7 +32,7 @@ public class ChoixServiceTest {
 		assertFalse(result.contains("f   "));
 	}
 
-	//a retravailler
+	//a retravailler redéfinir la spec
 //	@Test
 //	public void testIfInputIsEmptyListShouldReturnStringErreur() {
 //		List<String> input = Collections.emptyList();
@@ -47,14 +46,14 @@ public class ChoixServiceTest {
 	public void shouldReturnTheStream() {
 		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
 
-		List<String> updateList = choixService.returnStreamWithoutPeopleAlreadySelected(inputList).collect(Collectors.toList());
+		List<String> updateList = choixService.returnStreamWithoutPeopleAlreadySelected(inputList.stream()).collect(Collectors.toList());
 		
-		assertEquals(inputList, updateList);
+		assertTrue(inputList.equals(updateList));
 	}
 	
 	@Test
 	public void shouldReturnAStreamWithoutOneSelectedPerson() {
-		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
+		Stream<String> inputList = Stream.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
 		String pompier = "Thomas";
 		
 		List<String> updateList = choixService.returnStreamWithoutPeopleAlreadySelected(inputList, pompier).collect(Collectors.toList());
@@ -64,7 +63,7 @@ public class ChoixServiceTest {
 	
 	@Test
 	public void ShouldReturnAStreamWithoutTwoSelectedPeople() {
-		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
+		Stream<String> inputList = Stream.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
 		String pompier = "Thomas";
 		String reviewer = "Arthur";
 		
@@ -73,5 +72,6 @@ public class ChoixServiceTest {
 		assertFalse(updateList.contains(reviewer));
 		assertFalse(updateList.contains(pompier));
 	}
+	
 
 }
