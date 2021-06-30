@@ -73,5 +73,51 @@ public class ChoixServiceTest {
 		assertFalse(updateList.contains(pompier));
 	}
 	
+	@Test
+	public void shouldReturnRandomlyAnItemOfProperList() {
+		List<String> inputList = inputList();
 
+		String pompier = choixService.chooseItemRandomlyInList(inputList);
+		
+		assertFalse(pompier.equals(" "));
+		assertFalse(pompier.equals(""));
+		assertFalse(pompier.equals("l"));
+		assertFalse(pompier.equals("f   "));
+		assertTrue(inputList.contains(pompier));
+		assertNotNull(pompier);
+	}
+	
+	@Test
+	public void shouldReturnRandomlyAnItemOfProperListAndBeDifferentFromTheGivenString() {
+		List<String> inputList = inputList();
+		String reviewer = "Arthur";
+		
+		String pompier = choixService.chooseItemRandomlyInList(inputList,reviewer);
+		
+		assertFalse(pompier.equals(" "));
+		assertFalse(pompier.equals(""));
+		assertFalse(pompier.equals("l"));
+		assertFalse(pompier.equals("f   "));
+		assertTrue(inputList.contains(pompier));
+		assertFalse(pompier.equals(reviewer));
+		assertNotNull(pompier);
+	}
+	
+	@Test
+	public void shouldReturnRandomlyAnItemOfProperListAndBeDifferentFromThe2GivenStrings() {
+		List<String> inputList = inputList();
+		String reviewer = "Arthur";
+		String versionner = "Frederic";
+		
+		String pompier = choixService.chooseItemRandomlyInList(inputList, reviewer, versionner);
+		
+		assertFalse(pompier.equals(" "));
+		assertFalse(pompier.equals(""));
+		assertFalse(pompier.equals("l"));
+		assertFalse(pompier.equals("f   "));
+		assertTrue(inputList.contains(pompier));
+		assertFalse(pompier.equals(reviewer));
+		assertFalse(pompier.equals(versionner));
+		assertNotNull(pompier);
+	}
 }

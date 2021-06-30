@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ChoixService {
 	
-	
+//	>>> Stray with Stream till manipulating the list
 	public Stream<String> returnStreamOfPlaussibleNames(List<String> inputList){
 		Stream<String> cleanList = inputList.stream().map(String::strip).filter(prenom -> !(prenom.length()<=1));
 		return cleanList;
@@ -22,14 +22,15 @@ public class ChoixService {
 		Stream<String> updateList = cleanList.filter(person -> !Arrays.asList(string).contains(person));
 		return updateList;
 	}
+//	>>>
 	
-//	public String chooseItemRandomlyInList(List<String> listOfNames) {
-//		List<String> list = returnStreamOfPlaussibleNames(listOfNames); 
-//		Random rand = new Random();
-////		if (listOfNames.empty()) {
-////			return "erreur";
-////		}
-//		String item = list.get(rand.nextInt(list.size()));
-//		return item;
-//	}
+	public String chooseItemRandomlyInList(List<String> listOfNames, String...string) {
+		List<String> list = returnStreamWithoutPeopleAlreadySelected(returnStreamOfPlaussibleNames(listOfNames), string).collect(Collectors.toList());
+		Random rand = new Random();
+//		if (listOfNames.empty()) {
+//			return "erreur";
+//		}
+		String item = list.get(rand.nextInt(list.size()));
+		return item;
+	}
 }
