@@ -8,6 +8,8 @@ public class Choix {
 	
     public Choix(final String prenomsParDefautValue) {
         prenoms = prenomsParDefautValue;
+        seniors = prenomsParDefautValue;
+        juniors = prenomsParDefautValue;
     }
     
     public Choix() {

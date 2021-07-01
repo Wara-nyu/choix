@@ -31,7 +31,7 @@ public class ChoixController {
 	@GetMapping(value = { "/", "/index" })
 	public String index(Model model, @ModelAttribute("participant") Participant participant) {
 		String participants = String.join(separator, participantService.getListFirstnames());
-		model.addAttribute("participants", participants);
+//		model.addAttribute("participants", participants);
 		model.addAttribute("choix", new Choix(participants));
 		return "index";
 	}
@@ -39,13 +39,24 @@ public class ChoixController {
 	@PostMapping(value = { "/", "/index" })
 	public String choixSubmit(Model model, @ModelAttribute("choix") Choix choix, BindingResult errors) {
 		try {
-			List<String> candidats = new ArrayList<>(List.of(choix.getPrenoms().split(separator)));
-			String firstPerson = choixService.chooseRandomItem(candidats);
-			String secondPerson = choixService.chooseRandomItem(candidats, firstPerson);
-			String thirdPerson = choixService.chooseRandomItem(candidats, firstPerson, secondPerson);
-			model.addAttribute("Pompier", firstPerson);
-			model.addAttribute("SuppleantPompier", secondPerson);
-			model.addAttribute("thirdPerson", thirdPerson);
+			List<String> candidatsSeniors = new ArrayList<>(List.of(choix.getSeniors().split(separator)));
+			List<String> candidatsJuniors = new ArrayList<>(List.of(choix.getJuniors().split(separator)));
+			
+			String pompier = choixService.chooseRandomItem(candidatsSeniors);
+			String suppleantPompies = choixService.chooseRandomItem(candidatsJuniors, pompier);
+			model.addAttribute("pompier", pompier);
+			model.addAttribute("suppleantPompier", suppleantPompies);
+			
+			String revieweur = choixService.chooseRandomItem(candidatsSeniors, pompier);
+			String suppleantRevieweur = choixService.chooseRandomItem(candidatsJuniors, suppleantPompies, revieweur);
+			model.addAttribute("revieweur", revieweur);
+			model.addAttribute("suppleantRevieweur", suppleantRevieweur);
+			
+			String versionneur = choixService.chooseRandomItem(candidatsSeniors, pompier, revieweur);
+			String suppleantVersionneur = choixService.chooseRandomItem(candidatsJuniors, suppleantPompies, suppleantRevieweur, versionneur);
+			model.addAttribute("versionneur", versionneur);
+			model.addAttribute("suppleantVersionneur", suppleantVersionneur);
+			
 			return "index";
 			//construire une exception "maison" (service pour le géré throw...)
 		} catch (Exception ex) {
