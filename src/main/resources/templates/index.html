@@ -13,7 +13,6 @@
 
 	<form method="POST" th:object="${choix}" th:action="@{/index}">
 		<div id="textArea">
-<!-- 			<textarea id="prenoms" th:field="*{prenoms}"></textarea> -->
 			<textarea id="seniors" th:field="*{seniors}"></textarea>
 			<textarea id="juniors" th:field="*{juniors}"></textarea>
 		</div>
@@ -23,7 +22,6 @@
 	<div th:if="${pompier != null}" class="resultat">
 		<div class="nouvellePersonne" th:text="'Pompier : ' + ${pompier}"></div>
 		<div th:text="'Suppléant : '  + ${suppleantPompier}"></div>
-<!-- 		<div th:text="'3eme Personne : '  + ${thirdPerson}"></div> -->
 	</div>
 
 	<div th:if="${revieweur != null}" class="resultat">

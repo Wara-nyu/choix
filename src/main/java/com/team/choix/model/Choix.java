@@ -2,26 +2,16 @@ package com.team.choix.model;
 
 
 public class Choix {
-	private String prenoms;
 	private String seniors;
 	private String juniors;
 	
     public Choix(final String prenomsParDefautValue) {
-        prenoms = prenomsParDefautValue;
         seniors = prenomsParDefautValue;
         juniors = prenomsParDefautValue;
     }
     
     public Choix() {
     }
-
-	public String getPrenoms() {
-		return prenoms;
-	}
-
-	public void setPrenoms(String prenoms) {
-		this.prenoms = prenoms;
-	}
 
 	public String getSeniors() {
 		return seniors;
