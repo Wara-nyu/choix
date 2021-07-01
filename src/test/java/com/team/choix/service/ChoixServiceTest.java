@@ -24,7 +24,7 @@ public class ChoixServiceTest {
 	public void ShouldReturnAListOfPlaussibleName() {
 		List<String> inputList = inputList();
 
-		List<String> result = choixService.returnStreamOfPlaussibleNames(inputList).collect(Collectors.toList());
+		List<String> result = choixService.keepValidStrings(inputList);
 
 		assertFalse(result.contains(" "));
 		assertFalse(result.contains(""));
@@ -43,31 +43,31 @@ public class ChoixServiceTest {
 //	}
 
 	@Test
-	public void shouldReturnTheStream() {
+	public void shouldReturnTheSameList() {
 		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
 
-		List<String> updateList = choixService.returnStreamWithoutPeopleAlreadySelected(inputList.stream()).collect(Collectors.toList());
+		List<String> updateList = choixService.removeNames(inputList);
 		
 		assertTrue(inputList.equals(updateList));
 	}
 	
 	@Test
 	public void shouldReturnAStreamWithoutOneSelectedPerson() {
-		Stream<String> inputList = Stream.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
+		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
 		String pompier = "Thomas";
 		
-		List<String> updateList = choixService.returnStreamWithoutPeopleAlreadySelected(inputList, pompier).collect(Collectors.toList());
+		List<String> updateList = choixService.removeNames(inputList, pompier);
 		
 		assertFalse(updateList.contains(pompier));
 	}
 	
 	@Test
 	public void ShouldReturnAStreamWithoutTwoSelectedPeople() {
-		Stream<String> inputList = Stream.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
+		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
 		String pompier = "Thomas";
 		String reviewer = "Arthur";
 		
-		List<String> updateList = choixService.returnStreamWithoutPeopleAlreadySelected(inputList, pompier, reviewer).collect(Collectors.toList());
+		List<String> updateList = choixService.removeNames(inputList, pompier, reviewer);
 		
 		assertFalse(updateList.contains(reviewer));
 		assertFalse(updateList.contains(pompier));
@@ -77,7 +77,7 @@ public class ChoixServiceTest {
 	public void shouldReturnRandomlyAnItemOfProperList() {
 		List<String> inputList = inputList();
 
-		String pompier = choixService.chooseItemRandomlyInList(inputList);
+		String pompier = choixService.chooseRandomItem(inputList);
 		
 		assertFalse(pompier.equals(" "));
 		assertFalse(pompier.equals(""));
@@ -92,7 +92,7 @@ public class ChoixServiceTest {
 		List<String> inputList = inputList();
 		String reviewer = "Arthur";
 		
-		String pompier = choixService.chooseItemRandomlyInList(inputList,reviewer);
+		String pompier = choixService.chooseRandomItem(inputList,reviewer);
 		
 		assertFalse(pompier.equals(" "));
 		assertFalse(pompier.equals(""));
@@ -109,7 +109,7 @@ public class ChoixServiceTest {
 		String reviewer = "Arthur";
 		String versionner = "Frederic";
 		
-		String pompier = choixService.chooseItemRandomlyInList(inputList, reviewer, versionner);
+		String pompier = choixService.chooseRandomItem(inputList, reviewer, versionner);
 		
 		assertFalse(pompier.equals(" "));
 		assertFalse(pompier.equals(""));
