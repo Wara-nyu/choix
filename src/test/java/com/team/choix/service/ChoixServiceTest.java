@@ -52,7 +52,7 @@ public class ChoixServiceTest {
 	}
 	
 	@Test
-	public void shouldReturnAStreamWithoutOneSelectedPerson() {
+	public void shouldReturnAListWithoutTheGivenItem() {
 		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
 		String pompier = "Thomas";
 		
@@ -62,7 +62,7 @@ public class ChoixServiceTest {
 	}
 	
 	@Test
-	public void ShouldReturnAStreamWithoutTwoSelectedPeople() {
+	public void ShouldReturnAListWithoutThe2GivenItems() {
 		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
 		String pompier = "Thomas";
 		String reviewer = "Arthur";
@@ -71,6 +71,20 @@ public class ChoixServiceTest {
 		
 		assertFalse(updateList.contains(reviewer));
 		assertFalse(updateList.contains(pompier));
+	}
+	
+	@Test
+	public void ShouldReturnAListWithoutThe3GivenItemsWith1NotInTheList() {
+		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
+		String pompier = "Thomas";
+		String reviewer = "Arthur";
+		String other = "Anon";
+		
+		List<String> updateList = choixService.removeNames(inputList, pompier, reviewer, other);
+		
+		assertFalse(updateList.contains(reviewer));
+		assertFalse(updateList.contains(pompier));
+		assertFalse(updateList.contains(other));
 	}
 	
 	@Test
