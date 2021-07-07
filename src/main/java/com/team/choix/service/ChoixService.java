@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class ChoixService {
 	
 	List<String> keepValidStrings(List<String> inputList){
-		List<String> cleanList = inputList.stream().map(String::strip).filter(prenom -> !(prenom.length()<=1)).collect(Collectors.toList());
+		List<String> cleanList = inputList.stream().map(String::strip).filter(prenom -> prenom.length()>1).collect(Collectors.toList());
 		return cleanList;
 	}
 	

@@ -2,14 +2,14 @@
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Liste des candidats</title>
+<title>Roue de la Chance</title>
 <link rel="stylesheet" th:href="@{/css/choixIndex.css}" media="screen"
 	type="text/css">
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 </head>
 
 <body>
-	<h1>Entrez la liste des personnes</h1>
+	<h1>La roue de la chance</h1>
 
 	<form method="POST" th:object="${choix}" th:action="@{/index}">
 		<div id="textArea">
@@ -18,22 +18,23 @@
 		</div>
 		<button type="submit">choisir</button>
 	</form>
+	<div id="theChousens">
+		<div th:if="${pompier != null}" class="resultat">
+			<div class="nouvellePersonne" th:text="'Pompier : ' + ${pompier}"></div>
+			<div th:text="'Suppléant : '  + ${suppleantPompier}"></div>
+		</div>
 
-	<div th:if="${pompier != null}" class="resultat">
-		<div class="nouvellePersonne" th:text="'Pompier : ' + ${pompier}"></div>
-		<div th:text="'Suppléant : '  + ${suppleantPompier}"></div>
+		<div th:if="${revieweur != null}" class="resultat">
+			<div class="nouvellePersonne" th:text="'Revieweur : ' + ${revieweur}"></div>
+			<div th:text="'Suppléant : '  + ${suppleantRevieweur}"></div>
+		</div>
+
+		<div th:if="${versionneur != null}" class="resultat">
+			<div class="nouvellePersonne"
+				th:text="'Versionneur : ' + ${versionneur}"></div>
+			<div th:text="'Suppléant : '  + ${suppleantVersionneur}"></div>
+		</div>
 	</div>
-
-	<div th:if="${revieweur != null}" class="resultat">
-		<div class="nouvellePersonne" th:text="'Revieweur : ' + ${revieweur}"></div>
-		<div th:text="'Suppléant : '  + ${suppleantRevieweur}"></div>
-	</div>
-
-	<div th:if="${versionneur != null}" class="resultat">
-		<div class="nouvellePersonne" th:text="'Versionneur : ' + ${versionneur}"></div>
-		<div th:text="'Suppléant : '  + ${suppleantVersionneur}"></div>
-	</div>
-
 	<span>Version du build : <span th:text=${@environment.getProperty("build.version")} /></span>
 </body>
 </html>

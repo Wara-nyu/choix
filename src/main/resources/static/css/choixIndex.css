@@ -5,15 +5,15 @@ body {
 	display :flex;
 	align-items : center;
 	flex-direction : column;
-	font-family: arial;
+	font-family : arial;
 }
 
 textarea {
-	height : 50vh;
-	width : 30vw;
+	height : 400px;
+	width : 250px;
 	margin : 10px;
 	padding : 10px;
-	font-family: arial;
+	font-family : arial;
 	font-size : xx-large;
 }
 
@@ -21,16 +21,19 @@ form {
 	display : flex;
 	flex-direction : column;
 	align-items : center;
+	width : 100%;
 }
 
 #textArea{
 	display : flex;
 	flex-direction : row;
+	justify-content : space-between;
+	width : inherit;
 }
 
 button {
 	margin : 10px;
-	font-family: arial;
+	font-family : arial;
 	width : 10vW;
 }
 
@@ -43,14 +46,19 @@ button {
 	font-family : Arial, Helvetica, sans-serif;
 	display : flex;
 	flex-direction : column;
-	align-items: center;
+	align-items : center;
 }
 
 .nouvellePersonne{
-	font-weight: bold;
-	font-size: xx-large;
+	font-weight : bold;
+	font-size : xx-large;
 	margin : 10px 5px;
-	background-image: linear-gradient(to left, violet, indigo, blue, green, orange, red);   
-	-webkit-background-clip: text;
-  	color: transparent;
+	background-image : linear-gradient(to left, violet, indigo, blue, green, orange, red);   
+	-webkit-background-clip : text;
+  	color : transparent;
+}
+
+#theChousens{
+	position : absolute;
+	margin : 100px;
 }
