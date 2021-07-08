@@ -2,12 +2,14 @@ package com.team.choix.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.team.choix.model.Pair;
 
 @SpringBootTest
 public class ChoixServiceTest {
@@ -88,50 +90,33 @@ public class ChoixServiceTest {
 	}
 	
 	@Test
-	public void shouldReturnRandomlyAnItemOfProperList() {
+	public void shouldReturnRandomlyAnItemFromAList() {
 		List<String> inputList = inputList();
 
 		String pompier = choixService.chooseRandomItem(inputList);
 		
-		assertFalse(pompier.equals(" "));
-		assertFalse(pompier.equals(""));
-		assertFalse(pompier.equals("l"));
-		assertFalse(pompier.equals("f   "));
 		assertTrue(inputList.contains(pompier));
 		assertNotNull(pompier);
 	}
 	
 	@Test
-	public void shouldReturnRandomlyAnItemOfProperListAndBeDifferentFromTheGivenString() {
+	void shouldReturnAListOf2ItemsFromEachInputList() {
 		List<String> inputList = inputList();
-		String reviewer = "Arthur";
+		List<String> inputList2 = List.of("Camille", "Maxime", "Claude", "Dominique");
 		
-		String pompier = choixService.chooseRandomItem(inputList,reviewer);
+		List<String> result = choixService.select2Items(inputList, inputList2);
 		
-		assertFalse(pompier.equals(" "));
-		assertFalse(pompier.equals(""));
-		assertFalse(pompier.equals("l"));
-		assertFalse(pompier.equals("f   "));
-		assertTrue(inputList.contains(pompier));
-		assertFalse(pompier.equals(reviewer));
-		assertNotNull(pompier);
+		assertTrue(inputList.contains(result.get(0)));
+		assertTrue(inputList2.contains(result.get(1)));
 	}
 	
-	@Test
-	public void shouldReturnRandomlyAnItemOfProperListAndBeDifferentFromThe2GivenStrings() {
-		List<String> inputList = inputList();
-		String reviewer = "Arthur";
-		String versionner = "Frederic";
-		
-		String pompier = choixService.chooseRandomItem(inputList, reviewer, versionner);
-		
-		assertFalse(pompier.equals(" "));
-		assertFalse(pompier.equals(""));
-		assertFalse(pompier.equals("l"));
-		assertFalse(pompier.equals("f   "));
-		assertTrue(inputList.contains(pompier));
-		assertFalse(pompier.equals(reviewer));
-		assertFalse(pompier.equals(versionner));
-		assertNotNull(pompier);
-	}
+
+	
+	
+//	@Test
+//	void shouldReturnPairHolderDeputy() {
+//		Pair pompier = new Pair();
+//		
+//		
+//	}
 }

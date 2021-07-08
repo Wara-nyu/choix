@@ -41,20 +41,20 @@ public class ChoixController {
 			List<String> candidatsSeniors = new ArrayList<>(List.of(choix.getSeniors().split(separator)));
 			List<String> candidatsJuniors = new ArrayList<>(List.of(choix.getJuniors().split(separator)));
 			
-			String pompier = choixService.chooseRandomItem(candidatsSeniors);
-			String suppleantPompies = choixService.chooseRandomItem(candidatsJuniors, pompier);
-			model.addAttribute("pompier", pompier);
-			model.addAttribute("suppleantPompier", suppleantPompies);
-			
-			String revieweur = choixService.chooseRandomItem(candidatsSeniors, pompier);
-			String suppleantRevieweur = choixService.chooseRandomItem(candidatsJuniors, suppleantPompies, revieweur);
-			model.addAttribute("revieweur", revieweur);
-			model.addAttribute("suppleantRevieweur", suppleantRevieweur);
-			
-			String versionneur = choixService.chooseRandomItem(candidatsSeniors, pompier, revieweur);
-			String suppleantVersionneur = choixService.chooseRandomItem(candidatsJuniors, suppleantPompies, suppleantRevieweur, versionneur);
-			model.addAttribute("versionneur", versionneur);
-			model.addAttribute("suppleantVersionneur", suppleantVersionneur);
+//			String pompier = choixService.chooseRandomItem(candidatsSeniors);
+//			String suppleantPompies = choixService.chooseRandomItem(candidatsJuniors, pompier);
+//			model.addAttribute("pompier", pompier);
+//			model.addAttribute("suppleantPompier", suppleantPompies);
+//			
+//			String revieweur = choixService.chooseRandomItem(candidatsSeniors, pompier);
+//			String suppleantRevieweur = choixService.chooseRandomItem(candidatsJuniors, suppleantPompies, revieweur);
+//			model.addAttribute("revieweur", revieweur);
+//			model.addAttribute("suppleantRevieweur", suppleantRevieweur);
+//			
+//			String versionneur = choixService.chooseRandomItem(candidatsSeniors, pompier, revieweur);
+//			String suppleantVersionneur = choixService.chooseRandomItem(candidatsJuniors, suppleantPompies, suppleantRevieweur, versionneur);
+//			model.addAttribute("versionneur", versionneur);
+//			model.addAttribute("suppleantVersionneur", suppleantVersionneur);
 			
 			return "index";
 			//construire une exception "maison" (service pour le géré throw...)
