@@ -19,8 +19,12 @@ public class ChoixService {
 	}
 	
 	List<String> removeNames(List<String> cleanList, Pair...pairsOfNames) {
-//		pairsOfNames[0].getDeputy()
+//		pairsOfNames est un array de l'objet pair
 		List<String> updateList = cleanList.stream().filter(person -> !Stream.of(pairsOfNames).flatMap(pair -> Stream.of(pair.toString().split(","))).collect(Collectors.toList()).contains(person)).collect(Collectors.toList());
+		return updateList;
+	}
+	List<String> removeName(List<String> cleanList, String...name) {
+		List<String> updateList = cleanList.stream().filter(person -> !Arrays.asList(name).contains(person)).collect(Collectors.toList());
 		return updateList;
 	}
 	
@@ -35,15 +39,19 @@ public class ChoixService {
 	}
 	
 	Pair select2Items(List<String> list1, List<String> list2) {
-		return new Pair(chooseRandomItem(list1), chooseRandomItem(list2));
+		String holder = chooseRandomItem(list1);
+		String deputy = chooseRandomItem(removeName(list2, holder));
+		return new Pair(holder, deputy);
 	}
 	
 	public Pair selectTheHolder(List<String> list1, List<String> list2, Pair...names) {
+		int rand = (int) (Math.random() * 2);
+		Pair team;
 		List<String> updateList1 = removeNames(keepValidStrings(list1), names);
 		List<String> updateList2 = removeNames(keepValidStrings(list2), names);
-		Pair team = select2Items(updateList1, updateList2);
-
-		
-		return team;
+		if (rand == 0) {
+			return team = select2Items(updateList1, updateList2);
+		}
+		return team = select2Items(updateList2, updateList1);
 	}
 }

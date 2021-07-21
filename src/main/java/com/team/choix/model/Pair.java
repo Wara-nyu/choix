@@ -28,6 +28,6 @@ public class Pair {
 	
     @Override
     public String toString() {
-    	return holder + ", " + deputy;
+    	return holder + "," + deputy;
     }
 }

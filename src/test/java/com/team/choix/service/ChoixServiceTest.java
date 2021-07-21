@@ -2,10 +2,8 @@ package com.team.choix.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Collections;
 import java.util.List;
 
-import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -22,6 +20,16 @@ public class ChoixServiceTest {
 		return inputList;
 	}
 
+
+	@Test
+	public void shouldReturnRandomlyAnItemFromAList() {
+		List<String> inputList = inputList();
+		
+		String pompier = choixService.chooseRandomItem(inputList);
+		
+		assertTrue(inputList.contains(pompier));
+		assertNotNull(pompier);
+	}
 
 	@Test
 	public void ShouldReturnAListOfPlaussibleName() {
@@ -62,7 +70,7 @@ public class ChoixServiceTest {
 		
 		List<String> updateList = choixService.removeNames(inputList, pompier);
 		
-		assertFalse(updateList.isEmpty());
+//		assertFalse(updateList.isEmpty());
 		assertFalse(updateList.contains(pompier.getDeputy()));
 		assertFalse(updateList.contains(pompier.getHolder()));
 	}
@@ -72,30 +80,21 @@ public class ChoixServiceTest {
 		List<String> inputList = List.of("Arthur", "Thomas", "Frederic", "Elisabeth", "Christelle");
 		pompier.setDeputy("Camille");
 		pompier.setHolder("Thomas");
-		Pair reviewer = new Pair();
-		reviewer.setDeputy("Toto");
-		reviewer.setHolder("Christelle");
+		Pair reviewer = new Pair("Toto", "Christelle");
 		
 		List<String> updateList = choixService.removeNames(inputList, pompier, reviewer);
 		
-		assertFalse(updateList.isEmpty());
+//		assertFalse(updateList.isEmpty());
 		assertFalse(updateList.contains(reviewer.getDeputy()));
 		assertFalse(updateList.contains(reviewer.getHolder()));
 		assertFalse(updateList.contains(pompier.getDeputy()));
 		assertFalse(updateList.contains(pompier.getHolder()));
+		assertFalse(updateList.equals(inputList));
 	}
 	
-	@Test
-	public void shouldReturnRandomlyAnItemFromAList() {
-		List<String> inputList = inputList();
-
-		String pompier = choixService.chooseRandomItem(inputList);
-		
-		assertTrue(inputList.contains(pompier));
-		assertNotNull(pompier);
-	}
 	
 	@Test
+	//?
 	void shouldReturnAListOf2ItemsFromEachInputList() {
 		List<String> inputList = inputList();
 		List<String> inputList2 = List.of("Camille", "Maxime", "Claude", "Dominique");
@@ -108,53 +107,67 @@ public class ChoixServiceTest {
 		assertTrue(inputList2.contains(result.getDeputy()));
 	}
 	
-//	@Test
-//	void shouldReturnTheOtherStringThatIsNotGiven() {
-//		List<String> list = List.of("chien", "chat");
-//		String string = "chat";
-//		
-//		String theOther = choixService.getTheOtherString(list, string);
-//		
-//		assertEquals("chien", theOther);
-//		assertNotEquals("chat", theOther);
-//	}
+	@Test
+	void shouldReturnPairHolderDeputyStrictlyDifferentFromOneAnother() {
+		for(int i = 0; i < 100; i++) {
+			List<String> inputList = inputList();
+			List<String> inputList2 = inputList();
+
+			Pair result = choixService.selectTheHolder(inputList, inputList2);
+
+			assertNotNull(result.getDeputy());
+			assertNotNull(result.getHolder());
+			assertNotEquals(result.getHolder(), result.getDeputy());
+		}
+	}
 	
-//	@Test
-//	void shouldReturnPairHolderDeputyStrictlyDifferentFromOneAnother() {
-//		List<String> inputList = inputList();
-//		List<String> inputList2 = List.of("Camille", "Maxime", "Claude", "Dominique");
-//		
-//		Pair result = choixService.randomizeTheHolder(inputList, inputList2);
-//		
-//		assertNotNull(result.getDeputy());
-//		assertNotNull(result.getHolder());
-//		assertNotEquals(result.getHolder(), result.getDeputy());
-////		assertNotEquals("", result.getDeputy());
-////		assertNotEquals("", result.getHolder());
-////		assertNotEquals(" ", result.getDeputy());
-////		assertNotEquals(" ", result.getHolder());
-////		assertNotEquals("l", result.getDeputy());
-////		assertNotEquals("l", result.getHolder());
-////		assertNotEquals("f   ", result.getDeputy());
-////		assertNotEquals("f   ", result.getHolder());
-//	}
-//	@Test
-//	void shouldReturnPairHolderDeputyStrictlyDifferentFromTheGivenPair() {
-//		for(int i = 0; i < 100; i++) {
-//			List<String> inputList = inputList();
-//			List<String> inputList2 = List.of("Camille", "Maxime", "Claude", "Dominique");
-//			pompier.setDeputy("Camille");
-//			pompier.setHolder("Thomas");;
-//
-//			Pair result = choixService.randomizeTheHolder(inputList, inputList2, pompier);
-//
-//			assertNotNull(result.getDeputy());
-//			assertNotNull(result.getHolder());
-//			assertNotEquals(result.getHolder(), result.getDeputy());
-//			assertNotEquals(pompier.getHolder(), result.getDeputy());
-//			assertNotEquals(pompier.getDeputy(), result.getDeputy());
-//			assertNotEquals(pompier.getHolder(), result.getHolder());
-//			assertNotEquals(pompier.getDeputy(), result.getHolder());
-//		}
-//	}
+	@Test
+	void shouldReturnPairHolderDeputyStrictlyDifferentFromTheGivenPair() {
+		for(int i = 0; i < 100; i++) {
+			List<String> inputList = inputList();
+			List<String> inputList2 = List.of("Camille", "Maxime", "Claude", "Dominique");
+			pompier.setDeputy("Maxime");
+			pompier.setHolder("Arthur");;
+
+			Pair result = choixService.selectTheHolder(inputList, inputList2, pompier);
+
+			assertNotNull(result.getDeputy());
+			assertNotNull(result.getHolder());
+			assertNotEquals(result.getHolder(), result.getDeputy());
+			assertNotEquals(pompier.getHolder(), result.getDeputy());
+			assertNotEquals(pompier.getDeputy(), result.getDeputy());
+			assertNotEquals(pompier.getHolder(), result.getHolder());
+			assertNotEquals(pompier.getDeputy(), result.getHolder());
+		}
+	}
+		
+		@Test
+		void shouldReturnPairHolderDeputyStrictlyDifferentFromTheGivenPairs() {
+			for(int i = 0; i < 100; i++) {
+				List<String> inputList = inputList();
+				List<String> inputList2 = List.of("Camille", "Maxime", "Claude", "Dominique");
+				pompier.setDeputy("Maxime");
+				pompier.setHolder("Arthur");;
+				Pair reviewer = new Pair("Dominique", "Christelle");
+				Pair autre = new Pair("Claude", "Frederic");
+				
+				Pair result = choixService.selectTheHolder(inputList, inputList2, pompier, reviewer, autre);
+				
+				assertNotNull(result.getDeputy());
+				assertNotNull(result.getHolder());
+				assertNotEquals(result.getHolder(), result.getDeputy());
+				assertNotEquals(pompier.getHolder(), result.getDeputy());
+				assertNotEquals(pompier.getDeputy(), result.getDeputy());
+				assertNotEquals(pompier.getHolder(), result.getHolder());
+				assertNotEquals(pompier.getDeputy(), result.getHolder());
+				assertNotEquals(reviewer.getHolder(), result.getDeputy());
+				assertNotEquals(reviewer.getDeputy(), result.getDeputy());
+				assertNotEquals(reviewer.getHolder(), result.getHolder());
+				assertNotEquals(reviewer.getDeputy(), result.getHolder());
+				assertNotEquals(autre.getHolder(), result.getDeputy());
+				assertNotEquals(autre.getDeputy(), result.getDeputy());
+				assertNotEquals(autre.getHolder(), result.getHolder());
+				assertNotEquals(autre.getDeputy(), result.getHolder());
+			}
+	}
 }
