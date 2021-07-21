@@ -44,7 +44,7 @@ public class ChoixService {
 		return new Pair(holder, deputy);
 	}
 	
-	public Pair selectTheHolder(List<String> list1, List<String> list2, Pair...names) {
+	public Pair selectAPair(List<String> list1, List<String> list2, Pair...names) {
 		int rand = (int) (Math.random() * 2);
 		Pair team;
 		List<String> updateList1 = removeNames(keepValidStrings(list1), names);

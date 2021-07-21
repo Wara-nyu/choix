@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.team.choix.model.Choix;
+import com.team.choix.model.Pair;
 import com.team.choix.model.Participant;
 import com.team.choix.service.ChoixService;
 import com.team.choix.service.ParticipantService;
@@ -41,20 +42,17 @@ public class ChoixController {
 			List<String> candidatsSeniors = new ArrayList<>(List.of(choix.getSeniors().split(separator)));
 			List<String> candidatsJuniors = new ArrayList<>(List.of(choix.getJuniors().split(separator)));
 			
-//			String pompier = choixService.chooseRandomItem(candidatsSeniors);
-//			String suppleantPompies = choixService.chooseRandomItem(candidatsJuniors, pompier);
-//			model.addAttribute("pompier", pompier);
-//			model.addAttribute("suppleantPompier", suppleantPompies);
-//			
-//			String revieweur = choixService.chooseRandomItem(candidatsSeniors, pompier);
-//			String suppleantRevieweur = choixService.chooseRandomItem(candidatsJuniors, suppleantPompies, revieweur);
-//			model.addAttribute("revieweur", revieweur);
-//			model.addAttribute("suppleantRevieweur", suppleantRevieweur);
-//			
-//			String versionneur = choixService.chooseRandomItem(candidatsSeniors, pompier, revieweur);
-//			String suppleantVersionneur = choixService.chooseRandomItem(candidatsJuniors, suppleantPompies, suppleantRevieweur, versionneur);
-//			model.addAttribute("versionneur", versionneur);
-//			model.addAttribute("suppleantVersionneur", suppleantVersionneur);
+			Pair pompier = choixService.selectAPair(candidatsSeniors, candidatsJuniors);
+			model.addAttribute("pompier", pompier.getHolder());
+			model.addAttribute("suppleantPompier", pompier.getDeputy());
+			
+			Pair revieweur = choixService.selectAPair(candidatsSeniors, candidatsJuniors, pompier);
+			model.addAttribute("revieweur", revieweur.getHolder());
+			model.addAttribute("suppleantRevieweur", revieweur.getDeputy());
+			
+			Pair versionneur = choixService.selectAPair(candidatsSeniors, candidatsJuniors, pompier, revieweur);
+			model.addAttribute("versionneur", versionneur.getHolder());
+			model.addAttribute("suppleantVersionneur", versionneur.getDeputy());
 			
 			return "index";
 			//construire une exception "maison" (service pour le géré throw...)

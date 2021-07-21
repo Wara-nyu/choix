@@ -93,19 +93,19 @@ public class ChoixServiceTest {
 	}
 	
 	
-	@Test
-	//?
-	void shouldReturnAListOf2ItemsFromEachInputList() {
-		List<String> inputList = inputList();
-		List<String> inputList2 = List.of("Camille", "Maxime", "Claude", "Dominique");
-		
-		Pair result = choixService.select2Items(inputList, inputList2);
-		
-//		assertTrue(inputList.contains(result.getDeputy()));
-//		assertTrue(inputList2.contains(result.getHolder()));
-		assertTrue(inputList.contains(result.getHolder()));
-		assertTrue(inputList2.contains(result.getDeputy()));
-	}
+//	@Test
+//	// ???????????
+//	void shouldReturnAListOf2ItemsFromEachInputList() {
+//		List<String> inputList = inputList();
+//		List<String> inputList2 = List.of("Camille", "Maxime", "Claude", "Dominique");
+//		
+//		Pair result = choixService.select2Items(inputList, inputList2);
+//		
+////		assertTrue(inputList.contains(result.getDeputy()));
+////		assertTrue(inputList2.contains(result.getHolder()));
+//		assertTrue(inputList.contains(result.getHolder()));
+//		assertTrue(inputList2.contains(result.getDeputy()));
+//	}
 	
 	@Test
 	void shouldReturnPairHolderDeputyStrictlyDifferentFromOneAnother() {
@@ -113,7 +113,7 @@ public class ChoixServiceTest {
 			List<String> inputList = inputList();
 			List<String> inputList2 = inputList();
 
-			Pair result = choixService.selectTheHolder(inputList, inputList2);
+			Pair result = choixService.selectAPair(inputList, inputList2);
 
 			assertNotNull(result.getDeputy());
 			assertNotNull(result.getHolder());
@@ -129,7 +129,7 @@ public class ChoixServiceTest {
 			pompier.setDeputy("Maxime");
 			pompier.setHolder("Arthur");;
 
-			Pair result = choixService.selectTheHolder(inputList, inputList2, pompier);
+			Pair result = choixService.selectAPair(inputList, inputList2, pompier);
 
 			assertNotNull(result.getDeputy());
 			assertNotNull(result.getHolder());
@@ -151,7 +151,7 @@ public class ChoixServiceTest {
 				Pair reviewer = new Pair("Dominique", "Christelle");
 				Pair autre = new Pair("Claude", "Frederic");
 				
-				Pair result = choixService.selectTheHolder(inputList, inputList2, pompier, reviewer, autre);
+				Pair result = choixService.selectAPair(inputList, inputList2, pompier, reviewer, autre);
 				
 				assertNotNull(result.getDeputy());
 				assertNotNull(result.getHolder());
