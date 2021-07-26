@@ -5,9 +5,9 @@ public class Choix {
 	private String seniors;
 	private String juniors;
 	
-    public Choix(final String prenomsParDefautValue) {
-        seniors = prenomsParDefautValue;
-        juniors = prenomsParDefautValue;
+    public Choix(final String allSeniors, final String allJuniors) {
+        seniors = allSeniors;
+        juniors = allJuniors;
     }
     
     public Choix() {

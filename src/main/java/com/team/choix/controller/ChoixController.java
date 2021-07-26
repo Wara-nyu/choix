@@ -31,8 +31,9 @@ public class ChoixController {
 
 	@GetMapping(value = { "/", "/index" })
 	public String index(Model model, @ModelAttribute("participant") Participant participant) {
-		String participants = String.join(separator, participantService.getListFirstnames());
-		model.addAttribute("choix", new Choix(participants));
+		String seniors = String.join(separator, participantService.getSeniors());
+		String juniors = String.join(separator, participantService.getJuniors());
+		model.addAttribute("choix", new Choix(seniors, juniors));
 		return "index";
 	}
 

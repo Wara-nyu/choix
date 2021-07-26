@@ -13,8 +13,14 @@
 
 	<form method="POST" th:object="${choix}" th:action="@{/index}">
 		<div id="textArea">
-			<textarea id="seniors" th:field="*{seniors}"></textarea>
-			<textarea id="juniors" th:field="*{juniors}"></textarea>
+			<div class="coll">
+				<label for="seniors">Liste 1</label>
+				<textarea id="seniors" th:field="*{seniors}"></textarea>
+			</div>
+			<div class="coll">
+				<label for="juniors">List 2</label>
+				<textarea id="juniors" th:field="*{juniors}"></textarea>
+			</div>
 		</div>
 		<button type="submit">choisir</button>
 	</form>

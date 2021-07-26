@@ -11,5 +11,7 @@ public interface ParticipantService {
 	List<Participant> getAll();
 
 	List<String> getListFirstnames();
+	List<String> getSeniors();
+	List<String> getJuniors();
 	
 }

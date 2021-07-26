@@ -24,6 +24,7 @@ public class ParticipantRepositoryJdbcImpl implements ParticipantRepository {
                 rs.getLong("id"),
                 rs.getString("firstName"),
                 rs.getString("lastName"),
+                rs.getString("exp"),
                 rs.getInt("selectionCount"),
                 rs.getDate("lastSelectionDate") != null ? 
                 rs.getDate("lastSelectionDate").toInstant()

@@ -26,9 +26,14 @@ form {
 
 #textArea{
 	display : flex;
-	flex-direction : row;
 	justify-content : space-between;
 	width : inherit;
+}
+
+.coll > * {
+	display : flex;
+	flex-direction : collum;
+	margin : 1px;
 }
 
 button {
