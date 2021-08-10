@@ -28,11 +28,8 @@ public class ChoixService {
 		return updateList;
 	}
 	
-	String chooseRandomItem(List<String> list) {
+	public String chooseRandomItem(List<String> list) {
 		Random rand = new Random();
-//		if (listOfNames.empty()) {
-//			return "erreur";
-//		}
 		String item = list.get(rand.nextInt(list.size()));
 		return item;
 		

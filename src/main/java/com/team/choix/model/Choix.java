@@ -4,10 +4,15 @@ package com.team.choix.model;
 public class Choix {
 	private String seniors;
 	private String juniors;
+	private String list;
 	
-    public Choix(final String allSeniors, final String allJuniors) {
+	public Choix(final String allSeniors, final String allJuniors) {
         seniors = allSeniors;
         juniors = allJuniors;
+    }
+    
+    public Choix(final String laList) {
+    	list = laList;
     }
     
     public Choix() {
@@ -27,6 +32,14 @@ public class Choix {
 
 	public void setJuniors(String juniors) {
 		this.juniors = juniors;
+	}
+	
+    public String getList() {
+		return list;
+	}
+
+	public void setList(String list) {
+		this.list = list;
 	}
 
 }

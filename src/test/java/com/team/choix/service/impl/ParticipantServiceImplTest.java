@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,6 +44,7 @@ public class ParticipantServiceImplTest {
 //	}
 	
 	@Test
+	@Disabled
 	void ShouldReturnListOfAllSenior(){
 		List <String> expected = Arrays.asList("Arthur", "Thomas");
 		
@@ -52,6 +54,7 @@ public class ParticipantServiceImplTest {
 	}
 	
 	@Test
+	@Disabled
 	void ShouldReturnListOfAllJunior(){
 		List <String> expected = Arrays.asList("Wara");
 		

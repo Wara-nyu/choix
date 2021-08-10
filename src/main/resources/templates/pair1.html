@@ -1,0 +1,29 @@
+<!DOCTYPE xhtml>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Roue de la Chance</title>
+<link rel="stylesheet" th:href="@{/css/choixIndex.css}" media="screen"
+	type="text/css">
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+</head>
+
+<body>
+	<h1>La roue de la chance</h1>
+
+	<form method="POST" th:object="${choix}" th:action="@{/pair1}">
+		<div id="textArea">
+			<div class="coll">
+				<textarea id="seniors" th:field="*{list}"></textarea>
+			</div>
+		</div>
+		<button type="submit">choisir</button>
+	</form>
+	<div id="theChousens">
+		<div th:if="${pompier != null}" class="resultat">
+			<div class="nouvellePersonne" th:text="'Titulaire : ' + ${pompier}"></div>
+			<div th:text="'Suppléant : '  + ${suppleantPompier}"></div>
+		</div>
+	
+</body>
+</html>

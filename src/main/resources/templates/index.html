@@ -41,6 +41,11 @@
 			<div th:text="'Suppléant : '  + ${suppleantVersionneur}"></div>
 		</div>
 	</div>
+	
+		<div id="err" th:text="${err}" th:if="${err !=null}"></div>
+		
 	<span>Version du build : <span th:text=${@environment.getProperty("build.version")} /></span>
+	
+	
 </body>
 </html>
